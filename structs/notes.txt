@@ -1,0 +1,113 @@
+structs:
+
+collection of related items
+
+type person struct {
+    // struct fields
+}
+
+
+pass by value nature
+
+a new copy of original data will be stored in  the memory
+
+original data -------> memory block1
+
+copied original data ---- memory block3 ...
+
+so, if structs updated  , it will not update the original data.
+
+so by default, we will be working with copied original data
+
+solution: use structs with pointers.
+__________________________________________________________________________________
+
+pointers in go:
+
+-- deals with values at the memory address
+
+-- symbol *
+
+-- if * is specified to a type -> it referred as  " pointer pointing to type "
+-- if * is specified to a variable -> it refers to an operator that is pointing to the value that the variable holds at its memory
+
+e.g:  func (e *employee) update() { 
+    *e.name = "hi"
+}
+
+    *employee --> a pointer pointing to employee
+
+    *e ---> pointing to a value of variable e.
+
+    &e --> address of the value that e is holding in its memory
+
+
+ when we call a function with a receiver of type pointer to the type --> allows to be invoked with actual type or the pointer to the receiver
+
+
+    e.g emPtr: = &emp1
+
+        emPtr.update()
+
+        OR
+
+        emp.update()
+
+        // update function
+        func (e *employee) update() { 
+            *e.name = "hi"
+        }
+
+__________________________________________________________________________________
+
+
+value type :
+
+struct, int, float, bool, string
+impact with pointers
+
+reference type:
+slice, maps, channels, pointers and functions
+no impact with pointer
+
+if slice is updated through a function , it will update the original data directly
+
+
+e.g slc := []string{"Hi", "there"}
+
+    go will create two data structures when a slice is created
+
+    BLOCK-1-------slice   
+                    pointer to head
+                    length
+                    capacity
+
+
+
+    BLOCK2--------array
+                        sub-block1 - "Hi"
+                        sub-block2 - "there"
+
+
+
+    when a slice is passed into a function:
+
+    BLOCK-1-------slice   
+                    pointer to head__________
+                    length                   |
+                    capacity                 |
+                                             |
+                                             |
+                                             |
+    BLOCK2--------array                      |   
+                        sub-block1 - "Hi"<------| 
+                                                |    
+                        sub-block2 - "there"    |
+                                                |    
+                                                |
+    BLOCK-3-------slice                         |
+                    pointer to head-------------|
+                    length
+                    capacity
+
+    new copied slice will reference the original data here

@@ -1,0 +1,60 @@
+interface in go is a type
+
+contains set of methods
+
+there's no "implements" keyword in Go.
+
+satisfying an interface is done automatically in Go.
+
+if a type has the method in the interface, it is said to satisfy that interface
+
+e.g  type animal interface{
+        speak() string // if any other type satisfy this speak() method, it is said to satisfy the interface
+    }
+
+    type dog struct{    // dog type
+
+    }
+
+    func (d dog) speak() string { // satisfies the interface animal.
+        return "Woof!"
+    }
+
+
+The "interface{}" is the Type with no methods
+
+Its an empty interface
+
+All the types at least, implement ZERO methods
+
+"All the types satisfy the Empty interface". -- justify it?
+
+ -- if you have a function , takes an interface{} as a parameter, it can accept any value
+
+ -- func sample(value interface{}){
+
+    }
+
+    Here, value  is of interface type.
+    
+concrete types:
+    int string map struct , customtype 
+    can create a direct value
+
+we cannot create a direct value from the interface type 
+
+
+interfaces are like a contract to help managing the types - wont be of helpful if you change the implementation of it.
+    e.g if you are returning some invalid or useless value where the expectation is of a proper value then there is no use of interfaces
+interfaces are implicit -- justify?
+    -- theres no explicit link between interface type and the types those satisfy the interface.
+    -- don't have to say the custom type satisfies the interface
+
+    type bot interface{}
+    
+    type deBot struct{}
+    type enBot struct{}
+
+
+
+

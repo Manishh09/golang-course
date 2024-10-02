@@ -1,0 +1,67 @@
+how to run the code?
+
+command: 
+
+go run <file-name>
+
+go run <file-name1 file-name1 ... file-nameN>
+
+go run -> compiles and executes the go program
+
+go build -> compiles the group of go programs or a project in general
+
+Note: every go program must have have package to which it belongs to.
+
+What is package.main ?
+    a project 
+    collection of related code files
+
+    Two Types:
+        Executable - output: exe file, can run the the file , must have  main function
+        Reusable - helpers, reusable logic , code deps or libs
+    
+    How do we know if we are creating an Executable / Reusable package?
+        package name that we specify in a go file's first line
+        E.g: if you are specifying 'package main' as a first line of the program, then we can say that we are creating an executable type package
+             Run `go build` command to see the executable file - main.exe will get generated
+        Note: exe files get generated if and only if the package specified in a go file is 'main'
+
+        If there's any other name specified, then it will not generate the exe file 
+        E.g: package excelhelper  -- is not an executable pkg, its a reusable one.
+
+What is an import statement in go program?
+    package main
+    import "fmt"
+    fun main(){
+        fmt.Print("provide access to package main")
+    }
+
+    Here, the package "fmt" will be accessible to the  package main.
+    ITs a standard lib in go.
+    format is the full name of the "fmt"
+
+    if any package like "fmt", "math", "time", "io" are specified inside a package main , it means that package main will have access to these packages code
+
+
+What is main function in go?
+
+    syntax: func  main() {
+                // function body
+            }
+    func - tells go to declare a function in the program
+    main - name of the function
+    ()   - arguments
+
+    Entry point of a go program.
+    Must have 
+
+How main.go is organized ?
+
+    3 sections:
+        package declaration
+        import other packages acc to requirement
+        functions - to perform some tasks 
+
+
+
+

@@ -1,0 +1,12 @@
+MAP:
+_____________________________________________________________________________
+
+a map in go used to represent collection of related properties
+a key-value pair
+all keys and values must be of same type
+iteration is possible
+reference type
+Dont have to know the all the fields at compile time unlike structs
+
+
+

@@ -1,0 +1,61 @@
+
+ In Go, the Response struct contains the following fields
+
+ type Response struct {
+    Status string
+    StatusCode int
+    Body  io.ReadCloser 
+ }
+
+ what is io.ReadCloser ?
+
+    Its an interface
+    
+    type ReadCloser interface {
+        Reader
+        Closer
+    }
+
+Reader and Closer inturn are the Interfaces.
+
+    type Reader interface {
+        Read([]byte) (int , error)
+    }
+
+    type Closer interface {
+        Close() error
+    }
+____________________________________________________________
+
+
+
+If there are multiple types of  Request data to be handled, then   there will be a corresponding function which accepts that input type
+
+Which means, there will be a separate function for every input type
+
+How do we avoid this ?
+
+    We need to have a common input type,  which further can be utilized by any function it receives.
+
+    Using Reader interface , this problem can be avoided
+
+    type Reader interface {
+        Read([]byte) (int , error)
+    }
+
+    Read() function from Reader interface will be useful here
+    It takes input type as ([]byte) and returns length of the bytes read and an error in case of any while processing the data
+
+    Every type must be implementing the Reader interface to achieve this.
+
+____________________________________________________________
+
+Writer Interface:
+
+    On the contrary, the Writer interface will take []byte data which was sent from Reader interface    
+
+    type Writer interface {
+        Write([]byte) (int , error)
+    }
+
+
