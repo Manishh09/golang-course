@@ -1,0 +1,59 @@
+// A GoRoutine will be created automatically when we start compiling any golang program
+
+// What is a GoRoutine ?
+// exists in running program / the process
+// GoRoutine executes a program line by line
+// if encounters a blocking function call - goroutines will stop
+// a new one can be created
+
+e.g:
+
+go checkStatus(link)
+
+// Here, Go Runtime will create a GoRoutine to run this function
+
+
+What really happens When  a GoRoutine or a multiple GoRoutines are created?
+
+    - GoScheduler comes into picture here.
+        - It monitors the code that is running inside of each GoRoutine.
+        - Runs ONE GoRoutine till it finishes  OR detects blocking call - it pauses this particular GoRoutine.  
+        
+        Note: This is considering Only ONE CPU considering
+
+Go basically use One  CPU Core by default!!
+
+
+lets say if there are More CPU Cores , say there are 3 for example,
+    Here in this case,  GoScheduler will map the  GoRoutines ( assume there were 3 goroutines created ) accordingly 
+
+
+
+Concurrency  -if there are multiple goroutines to be execute the code, 
+            - if one is down, another will get processed.
+            - no wait is required for processing another
+            - scheduled process
+            - ONE CPU CORE
+
+
+Parallelism - multiple goroutines execute the code at the same time .
+            - multiple cores needed
+
+
+________________________________________________________________________________________
+What happen while running a go program ?
+    - main function will be executed first
+
+
+    - here, MainGoRoutine gets created
+    - if MainGoRoutine finds any blocking process / functions
+        - The MainGoRoutine will create a Child GoRoutine
+        - Now the Child GoRoutine will execute the code 
+        - if Child GoRoutine finds any blocking call - it notifies GoScheduler goes to sleep
+        - This Process repeats till all the goroutines finishes the executing the code.
+    
+    But the MainGoRoutine work gets done if there is no code to process after it crates a GoRoutine.
+
+    So, the Child GoRoutines are still processing the code. The entire program gets exited automatically as main goroutine finished.
+
+    How to handle this problem  ? - > Channels will come into picture here.

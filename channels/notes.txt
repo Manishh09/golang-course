@@ -1,0 +1,15 @@
+Channels used to communicate in between different running GoRoutines!
+
+So Channels let the MainGoRoutine Know if there are any child goroutines are yet to finish its job
+
+Channels are typed.
+
+Should be same type of data that needs to be shared accross the goroutines
+
+how to create a channel ?
+
+
+    c := make(chan string)
+
+    fmt.Println(<-c)
+
