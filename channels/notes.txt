@@ -13,3 +13,11 @@ how to create a channel ?
 
     fmt.Println(<-c)
 
+    channel <- 5            // send 5 into channel
+
+
+    variable <- channel     // wait till channel has a value and assign
+
+
+    fmt.Println(<- channel) // wait till channel has a value and print
+
