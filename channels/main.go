@@ -19,15 +19,19 @@ func main() {
 	for _, link := range links {
 		go checkStatus(link, ch) // pass channel
 	}
+	// Main GORoutine will wait till the channel receives the value, so its a blocking line of code // waits for the resp from child goroutines
 
-	fmt.Println(<-ch) // Main GORoutine will wait till the channel receives the value, so its a blocking line of code // waits for the resp from child goroutines
-	fmt.Println(<-ch)
-	fmt.Println(<-ch)
-	fmt.Println(<-ch)
-	fmt.Println(<-ch)
+	// fmt.Println(<-ch)
+	// fmt.Println(<-ch)
+	// fmt.Println(<-ch)
+	// fmt.Println(<-ch)
+	// fmt.Println(<-ch)
 
 	//we need wait for all the goroutines,  since 5 go routines were created
 
+	for i := 0; i < len(links); i++ {
+		fmt.Println(<-ch) // wait for channel to receive data and resumes the loop execution
+	}
 }
 
 func checkStatus(link string, ch chan string) {
